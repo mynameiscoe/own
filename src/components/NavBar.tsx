@@ -3,6 +3,7 @@ import Drawer from "@/essentials/Drawer";
 import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 
+
 export default function NavBar() {
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
@@ -15,7 +16,7 @@ export default function NavBar() {
     <div
       className="relative mt-7 border-b border-t border-white/30 backdrop-blur-2xl shadow-lg"
       style={{
-        background: "linear-gradient(to left, #000428, #004e92)",
+        background: "#343148",
       }}
     >
       <Drawer open={open} setOpen={setOpen} />
