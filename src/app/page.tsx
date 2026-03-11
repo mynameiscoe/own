@@ -12,11 +12,11 @@ export default function Home() {
     <div className="relative">   
     {/* <StarFallCanvas />    */}
       <NavBar />
-      <main className="mx-5 sm:mx-10 lg:mx-18">
+      <main className="mx-5 xl:mx-18">
         {/* <HomePage /> */}
         {/* <AboutPage /> */}
-        {/* <SkillPage /> */}
-        <ProjectPage /> 
+        <SkillPage />
+        {/* <ProjectPage />  */}
         {/* <ContactPage /> */}
       </main>
     </div>

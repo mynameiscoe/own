@@ -20,7 +20,7 @@ export default function NavBar() {
       }}
     >
       <Drawer open={open} setOpen={setOpen} />
-      <div className="py-3 px-5 sm:px-10 md:px-18 w-full">
+      <div className="py-3 px-5 xl:px-18 w-full">
         <div className="flex justify-between items-center text-white">
           <p className="w-full">Hello</p>
           <div
