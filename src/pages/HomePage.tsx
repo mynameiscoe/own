@@ -25,16 +25,16 @@ export default function HomePage() {
   const buttonClass =
     "bg-white/20 backdrop-blur-sm border border-white/30 rounded-full shadow-lg transition duration-300 hover:bg-white/30";
 
-    const socialBtn =
+  const socialBtn =
     "bg-white/20 backdrop-blur-sm border border-white/30 rounded-full shadow-lg transition duration-300";
 
   return (
     <div
-      className="min-h-screen text-white pt-20 pb-10 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen text-white pt-20 pb-10"
       style={{ backgroundColor: BACKGROUND_COLOR }}
     >
-      <div className="max-w-9xl mx-auto flex flex-col xl:flex-row items-center justify-between gap-12">
-        <div className="flex-2 max-w-xl text-center md:text-left order-2 xl:order-1">
+      <div className="flex flex-col xl:flex-row items-center justify-between gap-12">
+        <div className="flex-2 w-full md:max-w-2xl text-center md:text-left order-2 xl:order-1">
           <div className={`p-6 ${glassClass} mb-8`}>
             {mounted && (
               <p className="text-lg sm:text-xl text-gray-200 mb-2 flex items-center justify-center md:justify-start">
@@ -53,7 +53,8 @@ export default function HomePage() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-4xl text-gray-200 md:text-6xl font-extrabold mb-4 leading-tight"
             >
-              CHIT MIN THU
+              {/* CHIT MIN THU */}
+              Coe
             </motion.h1>
 
             <motion.div
@@ -65,7 +66,7 @@ export default function HomePage() {
               <span className="text-gray-300">I&apos;m a </span>
               <span
                 style={{ color: ACCENT_COLOR }}
-                className="font-extrabold tracking-wide drop-shadow-lg"
+                className="font-extrabold tracking-wide drop-shadow-lg text-nowrap"
               >
                 Frontend Developer
               </span>
@@ -94,7 +95,9 @@ export default function HomePage() {
 
           <div className="flex justify-center md:justify-start gap-5 mt-10">
             <a
-              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="viber://chat?number=959942620449"
               className={`w-10 h-10 flex justify-center items-center hover:bg-purple-500 ${socialBtn}`}
             >
               <FontAwesomeIcon
@@ -104,7 +107,9 @@ export default function HomePage() {
               />
             </a>
             <a
-              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://facebook.com/nameiscoe"
               className={`w-10 h-10 flex justify-center items-center hover:bg-blue-700 ${socialBtn}`}
             >
               <FontAwesomeIcon
@@ -114,7 +119,9 @@ export default function HomePage() {
               />
             </a>
             <a
-              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://t.me/coe_2005"
               className={`w-10 h-10 flex justify-center items-center hover:bg-blue-500 ${socialBtn}`}
             >
               <FontAwesomeIcon

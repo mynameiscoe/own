@@ -46,7 +46,7 @@ export default function ProjectsPage() {
       className="min-h-screen text-white pt-24 pb-12"
       style={{ backgroundColor: BACKGROUND_COLOR }}
     >
-      <div className=" mx-auto">
+      <div className="mx-auto">
         {/* Header Section */}
         <div className="mb-16 text-center md:text-left">
           <motion.div
@@ -66,7 +66,7 @@ export default function ProjectsPage() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-4 lg:gap-8 bg-re">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-4 lg:gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={index}

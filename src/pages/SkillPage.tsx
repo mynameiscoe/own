@@ -1,3 +1,5 @@
+"use client";
+import React from "react";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -23,25 +25,24 @@ const GlassSkillCard = ({
   colorClass,
 }: Skill) => {
   return (
-    // The core of the glass effect: border, background transparency, and blur.
     <div
-      className={`p-6 rounded-xl border border-gray-600/50 bg-white/10 backdrop-blur-md shadow-2xl 
-                  transition-all duration-300 transform hover:scale-[1.03] hover:shadow-cyan-500/50 
+      className={`p-6 rounded-xl border border-white/10 bg-slate-900/40 backdrop-blur-md shadow-2xl 
+                  transition-all duration-300 transform hover:scale-[1.03] hover:shadow-cyan-500/20 
                   cursor-pointer text-center relative overflow-hidden mt-2`}
     >
-      {/* 1. Progress Indicator (Top Border Glow based on Percentage) */}
+      {/* 1. Progress Indicator (Top Border Glow) */}
       <div
         className={`absolute top-0 left-0 h-1 ${colorClass} transition-all duration-700`}
         style={{
           width: `${percentage}%`,
-          boxShadow: `0 0 10px 0 ${colorClass.split("-")[1]}`,
+          boxShadow: `0 0 15px 0 ${colorClass.split("-")[1] || "cyan"}`,
           borderRadius: "0 0 4px 4px",
         }}
       ></div>
 
-      {/* 2. Icon (The focal point) */}
+      {/* 2. Icon Section */}
       <div className="flex justify-center my-4">
-        <div className={`p-4 rounded-full bg-black/30 ${colorClass} shadow-lg`}>
+        <div className={`p-4 rounded-full bg-white/5 ${colorClass} shadow-lg`}>
           <IconComponent
             className={`${skill === "Next.js" ? "text-black" : "text-white"} text-4xl`}
           />
@@ -50,7 +51,7 @@ const GlassSkillCard = ({
 
       {/* 3. Skill Name & Percentage */}
       <h3 className="text-xl font-bold text-white mb-1">{skill}</h3>
-      <p className="text-gray-200 text-lg font-semibold">
+      <p className="text-gray-400 text-lg font-semibold">
         <span className="text-cyan-400">{percentage}%</span> Proficiency
       </p>
     </div>
@@ -68,13 +69,13 @@ export default function SkillPage() {
     },
     {
       skill: "CSS/Tailwind",
-      percentage: 80,
+      percentage: 70,
       icon: FaCss3Alt,
       colorClass: "bg-blue-500",
     },
     {
       skill: "JavaScript",
-      percentage: 70,
+      percentage: 60,
       icon: FaJs,
       colorClass: "bg-yellow-500",
     },
@@ -86,13 +87,13 @@ export default function SkillPage() {
     },
     {
       skill: "Next.js",
-      percentage: 60,
+      percentage: 65,
       icon: SiNextdotjs,
       colorClass: "bg-white text-gray-900",
     },
     {
       skill: "Git & GitHub",
-      percentage: 75,
+      percentage: 60,
       icon: FaGitAlt,
       colorClass: "bg-red-500",
     },
@@ -105,21 +106,19 @@ export default function SkillPage() {
   ];
 
   return (
-    // Assume a dark background is applied to the parent element for the glass effect to be visible
-    <div className="py-16 min-h-screen">
+    <div className="py-16 min-h-screen px-4 sm:px-6 lg:px-8">
       {/* Header Section */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-extrabold text-white sm:text-6xl">
           My <span className="text-cyan-400">Technical Stack</span>
         </h1>
-        <p className="mt-6 text-xl text-gray-300">
-          Chit Min Thu&apos; areas of expertise, presented with a futuristic
-          design.
+        <p className="mt-6 text-xl text-gray-400">
+          Chit Min Thu’s skills shown in a futuristic design.
         </p>
       </div>
 
-      {/* Skills Grid - Highly Responsive (2-col to 4-col) */}
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {/* Skills Grid */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {skillsData.map((skill, index) => (
           <GlassSkillCard
             key={index}
