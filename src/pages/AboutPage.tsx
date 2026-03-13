@@ -20,7 +20,11 @@ export default function AboutPage() {
   const personalDetails = [
     { icon: FaBirthdayCake, label: "Birthday", value: "10 May 2005" },
     { icon: FaPhone, label: "Phone", value: "09 942620449" },
-    { icon: FaMapMarkerAlt, label: "City", value: "Yangon, Hlaing" },
+    {
+      icon: FaMapMarkerAlt,
+      label: "City",
+      value: "Yangon, Thingangyun Township",
+    },
     { icon: FaEnvelope, label: "Email", value: "chitminthu2005c@gmail.com" },
   ];
 

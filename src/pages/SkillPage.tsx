@@ -9,6 +9,11 @@ import {
   FaGitAlt,
 } from "react-icons/fa";
 import { SiNextdotjs } from "react-icons/si";
+import { motion } from "framer-motion";
+
+// Consistency Constants from Home Page
+const ACCENT_COLOR = "#00FF7F";
+const BACKGROUND_COLOR = "#1f1d2b";
 
 type Skill = {
   skill: string;
@@ -17,7 +22,6 @@ type Skill = {
   colorClass: string;
 };
 
-// --- Reusable Glassmorphism Skill Card Component ---
 const GlassSkillCard = ({
   skill,
   percentage,
@@ -25,40 +29,39 @@ const GlassSkillCard = ({
   colorClass,
 }: Skill) => {
   return (
-    <div
-      className={`p-6 rounded-xl border border-white/10 bg-slate-900/40 backdrop-blur-md shadow-2xl 
-                  transition-all duration-300 transform hover:scale-[1.03] hover:shadow-cyan-500/20 
-                  cursor-pointer text-center relative overflow-hidden mt-2`}
+    <motion.div
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="p-6 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl 
+                 transition-all duration-500 hover:shadow-green-500/30 
+                 cursor-pointer text-center relative overflow-hidden"
     >
-      {/* 1. Progress Indicator (Top Border Glow) */}
+      {/* Progress Glow matching Home Page Accent */}
       <div
-        className={`absolute top-0 left-0 h-1 ${colorClass} transition-all duration-700`}
+        className="absolute top-0 left-0 h-1 transition-all duration-700"
         style={{
           width: `${percentage}%`,
-          boxShadow: `0 0 15px 0 ${colorClass.split("-")[1] || "cyan"}`,
-          borderRadius: "0 0 4px 4px",
+          backgroundColor: ACCENT_COLOR,
+          boxShadow: `0 0 15px ${ACCENT_COLOR}`,
         }}
       ></div>
 
-      {/* 2. Icon Section */}
       <div className="flex justify-center my-4">
-        <div className={`p-4 rounded-full bg-white/5 ${colorClass} shadow-lg`}>
+        <div className="p-4 rounded-full bg-white/10 border border-white/20 shadow-lg">
           <IconComponent
-            className={`${skill === "Next.js" ? "text-black" : "text-white"} text-4xl`}
+            className="text-4xl"
+            style={{ color: skill === "Next.js" ? "#fff" : "white" }}
           />
         </div>
       </div>
 
-      {/* 3. Skill Name & Percentage */}
-      <h3 className="text-xl font-bold text-white mb-1">{skill}</h3>
+      <h3 className="text-xl font-bold text-gray-200 mb-1">{skill}</h3>
       <p className="text-gray-400 text-lg font-semibold">
-        <span className="text-cyan-400">{percentage}%</span> Proficiency
+        <span style={{ color: ACCENT_COLOR }}>{percentage}%</span> Proficiency
       </p>
-    </div>
+    </motion.div>
   );
 };
 
-// --- Main Skill Page Component ---
 export default function SkillPage() {
   const skillsData: Skill[] = [
     {
@@ -89,7 +92,7 @@ export default function SkillPage() {
       skill: "Next.js",
       percentage: 65,
       icon: SiNextdotjs,
-      colorClass: "bg-white text-gray-900",
+      colorClass: "bg-white",
     },
     {
       skill: "Git & GitHub",
@@ -106,19 +109,24 @@ export default function SkillPage() {
   ];
 
   return (
-    <div className="py-16 min-h-screen px-4 sm:px-6 lg:px-8">
-      {/* Header Section */}
+    <div
+      className="py-16 min-h-screen"
+      style={{ backgroundColor: BACKGROUND_COLOR }}
+    >
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-extrabold text-white sm:text-6xl">
-          My <span className="text-cyan-400">Technical Stack</span>
-        </h1>
-        <p className="mt-6 text-xl text-gray-400">
-          Chit Min Thu’s skills shown in a futuristic design.
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl font-extrabold text-white sm:text-6xl"
+        >
+          My <span style={{ color: ACCENT_COLOR }}>Technical Stack</span>
+        </motion.h1>
+        <p className="mt-6 text-xl text-gray-400 max-w-2xl mx-auto">
+          Modern tools and technologies I use to bring ideas to life.
         </p>
       </div>
 
-      {/* Skills Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="max-w-7xl mx-auto gap-8 sm:gap-4 xl:gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {skillsData.map((skill, index) => (
           <GlassSkillCard
             key={index}

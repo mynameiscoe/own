@@ -72,7 +72,6 @@ export default function HomePage() {
               </span>
             </motion.div>
           </div>
-
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -84,7 +83,7 @@ export default function HomePage() {
           </motion.p>
 
           <a
-            href="#"
+            href="/coe-cv.pdf"
             download
             className={`inline-flex items-center justify-center gap-3 px-8 py-3 font-bold ${buttonClass}`}
             style={{ color: ACCENT_COLOR }}
@@ -92,7 +91,6 @@ export default function HomePage() {
             <span>Download CV</span>
             <ArrowDownToLine size={24} />
           </a>
-
           <div className="flex justify-center md:justify-start gap-5 mt-10">
             <a
               target="_blank"

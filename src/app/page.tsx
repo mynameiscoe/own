@@ -13,11 +13,11 @@ export default function Home() {
     {/* <StarFallCanvas />    */}
       <NavBar />
       <main className="mx-5 xl:mx-18">
-        <HomePage />
+        {/* <HomePage /> */}
         {/* <AboutPage /> */}
         {/* <SkillPage /> */}
-        {/* <ProjectPage />  */}
-        {/* <ContactPage /> */}
+        {/* <ProjectPage />   */}
+        <ContactPage />
       </main>
     </div>
   );
