@@ -28,16 +28,34 @@ export default function AboutPage() {
     { icon: FaEnvelope, label: "Email", value: "chitminthu2005c@gmail.com" },
   ];
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
     <div
-      className="min-h-screen text-white pt-24 pb-12"
+      className="text-white py-20"
       style={{ backgroundColor: BACKGROUND_COLOR }}
     >
-      <div className="mx-auto">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="mx-auto"
+      >
         {/* --- Header Section --- */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          variants={itemVariants}
           className="mb-12 text-center md:text-left"
         >
           <div className="flex items-center gap-3 mb-4 justify-center md:justify-start">
@@ -55,19 +73,23 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* 1. Left Column: Image and Main Title */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
+            variants={itemVariants}
+            whileHover={{ y: -5 }} // Mouse တင်ရင် အပေါ်နည်းနည်းတက်မယ်
             className={`lg:col-span-4 p-8 ${glassClass} flex flex-col items-center text-center self-start`}
           >
-            <div className="w-48 h-48 mb-6 relative rounded-full overflow-hidden border-4 border-white/10 shadow-2xl">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="w-48 h-48 mb-6 relative rounded-full overflow-hidden border-4 border-white/10 shadow-2xl"
+            >
               <Image
-                src="/boy.png" // Using your profile image
+                src="/boy.png"
                 alt="Chit Min Thu"
                 fill
                 style={{ objectFit: "cover" }}
               />
-            </div>
+            </motion.div>
 
             <h1 className="text-3xl font-extrabold text-white">Chit Min Thu</h1>
             <p
@@ -79,14 +101,9 @@ export default function AboutPage() {
           </motion.div>
 
           {/* 2. Right Column: Bio and Details */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="lg:col-span-8 space-y-8"
-          >
+          <div className="lg:col-span-8 space-y-8">
             {/* Short Bio */}
-            <div className={`${glassClass} p-8`}>
+            <motion.div variants={itemVariants} className={`${glassClass} p-8`}>
               <h3
                 className="text-xl font-bold mb-4 uppercase tracking-wider"
                 style={{ color: ACCENT_COLOR }}
@@ -98,40 +115,46 @@ export default function AboutPage() {
                 clean, responsive, and user-friendly web applications. I focus
                 on UI/UX excellence and writing clean, maintainable code.
               </p>
-            </div>
+            </motion.div>
 
             {/* Personal Details Cards */}
-            <div>
+            <motion.div variants={itemVariants}>
               <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-wider">
                 Personal Details
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {personalDetails.map((item, index) => (
-                  <div
+                  <motion.div
                     key={index}
-                    className={`${glassClass} p-5 transition-all duration-300 hover:shadow-green-500/10 hover:-translate-y-1`}
+                    whileHover={{
+                      scale: 1.03,
+                      backgroundColor: "rgba(255, 255, 255, 0.08)",
+                    }}
+                    className={`${glassClass} p-5 transition-all duration-300 hover:shadow-green-500/10`}
                   >
                     <div className="flex items-center gap-4">
                       <item.icon
                         style={{ color: ACCENT_COLOR }}
-                        className="text-2xl"
+                        className="text-2xl shrink-0"
                       />
                       <div>
                         <span className="text-xs font-medium text-gray-500 block uppercase tracking-widest">
                           {item.label}
                         </span>
-                        <span className="text-md font-semibold text-gray-200">
+                        <span className="tex-md font-semibold text-gray-200">
                           {item.value}
                         </span>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* Quick Fact / Age */}
-            <div
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
               className={`${glassClass} p-5 border-l-4`}
               style={{ borderLeftColor: ACCENT_COLOR }}
             >
@@ -141,10 +164,10 @@ export default function AboutPage() {
               <span className="text-xl font-bold text-white">
                 20 Years Old & Open to Work
               </span>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

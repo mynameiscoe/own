@@ -14,7 +14,7 @@ const projects = [
     tags: ["Laravel", "Inertia", "React"],
     link: "https://topupnation.gg/",
     github: "https://github.com/iconicdigitalbrandingsolution/top-up-nation",
-    image: "/tpn.png", // Replace with your project screenshot
+    image: "/tpn.png",
   },
   {
     title: "Segent",
@@ -34,24 +34,25 @@ const projects = [
     github: "https://github.com/iconicdigitalbrandingsolution/home-plus-fe",
     image: "/home.jpg",
   },
-  // Add more projects here
 ];
 
 export default function ProjectsPage() {
   const glassClass =
-    "bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-green-500/20 hover:-translate-y-2";
+    "bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-green-500/20";
 
   return (
     <div
-      className="min-h-screen text-white pt-24 pb-12"
+      className="text-white py-20"
       style={{ backgroundColor: BACKGROUND_COLOR }}
     >
-      <div className="mx-auto">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="mb-16 text-center md:text-left">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="flex items-center gap-3 mb-4 justify-center md:justify-start"
           >
             <Code2 style={{ color: ACCENT_COLOR }} size={32} />
@@ -59,40 +60,51 @@ export default function ProjectsPage() {
               Featured <span style={{ color: ACCENT_COLOR }}>Projects</span>
             </h2>
           </motion.div>
-          <p className="text-gray-400 max-w-2xl text-lg">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-gray-400 max-w-2xl text-lg"
+          >
             A collection of web applications I&apos;ve built, focusing on UI/UX
             and clean code.
-          </p>
+          </motion.p>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-4 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -10 }} // Hover လုပ်ရင် card ကြွတက်လာမယ်
               className={glassClass}
             >
               {/* Image Container */}
-              <div className="relative h-48 w-full bg-gray-800">
-                {/* Fallback color if image is missing */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="opacity-80 hover:opacity-100 transition-opacity"
-                />
+              <div className="relative h-48 w-full bg-gray-800 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent z-10" />
+                <motion.div
+                  whileHover={{ scale: 1.1 }} // ပုံကို hover လုပ်ရင် zoom ဖြစ်မယ်
+                  transition={{ duration: 0.4 }}
+                  className="h-full w-full"
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    className="opacity-80 hover:opacity-100 transition-opacity"
+                  />
+                </motion.div>
               </div>
 
               {/* Content */}
               <div className="p-6 group">
-                <h3
-                  className={`text-xl font-bold mb-2 text-gray-100 transition duration-300 group-hover:text-[#00FF7F] `}
-                >
+                <h3 className="text-xl font-bold mb-2 text-gray-100 transition duration-300 group-hover:text-[#00FF7F]">
                   {project.title}
                 </h3>
                 <p className="text-gray-400 text-sm mb-4 line-clamp-2">
@@ -113,7 +125,9 @@ export default function ProjectsPage() {
 
                 {/* Actions */}
                 <div className="flex gap-4">
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     target="_blank"
                     rel="noopener noreferrer"
                     href={project.link}
@@ -121,15 +135,17 @@ export default function ProjectsPage() {
                     style={{ color: ACCENT_COLOR }}
                   >
                     <ExternalLink size={18} /> View
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     target="_blank"
                     rel="noopener noreferrer"
                     href={project.github}
                     className="flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-white transition-colors"
                   >
                     <Github size={18} /> Code
-                  </a>
+                  </motion.a>
                 </div>
               </div>
             </motion.div>

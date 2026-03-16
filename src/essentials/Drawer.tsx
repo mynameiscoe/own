@@ -23,6 +23,9 @@ type DrawerOpen = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+const ACCENT_COLOR = "#00FF7F";
+const BACKGROUND_COLOR = "#1f1d2b";
+
 export default function Drawer({ open, setOpen }: DrawerOpen) {
   const [mounted, setMounted] = useState(false);
 
@@ -41,12 +44,28 @@ export default function Drawer({ open, setOpen }: DrawerOpen) {
     setMounted(true);
   }, []);
 
+  // -----------------------------
+  // Smooth Scroll Function
+  // -----------------------------
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
+      setOpen(false); // Drawer ကို scroll လုပ်ပြီး ချင်ပြီး auto close
+    }
+  };
+
   if (!mounted) return null;
 
   return createPortal(
     <div className="md:hidden">
+      {/* Backdrop */}
       <div
-        className={`md:hidden fixed inset-0 z-40 bg-black/30 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-md transition-opacity duration-500 ${
           open
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -54,80 +73,129 @@ export default function Drawer({ open, setOpen }: DrawerOpen) {
         onClick={() => setOpen(false)}
       />
 
+      {/* Drawer Menu */}
       <div
-        className={`fixed top-0 right-0 z-50 h-screen transition-all duration-300 ease-in-out ${
-          open ? "w-[300px]" : "w-0"
-        } overflow-hidden bg-gradient-to-b from-[#3d0c6d] to-[#594e90] border border-white/20 `}
+        className={`fixed top-4 bottom-4 right-4 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          open
+            ? "w-[280px] translate-x-0 opacity-100"
+            : "w-[280px] translate-x-[110%] opacity-0 pointer-events-none"
+        } overflow-hidden rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]`}
+        style={{ backgroundColor: BACKGROUND_COLOR }}
       >
-        <div
-          className={`flex justify-between flex-row-reverse py-3 pr-6 transition-all duration-300 ${
-            open ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <X
-            className="w-7 h-7 cursor-pointer"
+        {/* Close Button */}
+        <div className="flex justify-end p-5">
+          <button
             onClick={() => setOpen(false)}
-          />
+            className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+          >
+            <X className="w-6 h-6 text-gray-400" />
+          </button>
         </div>
 
-        <div
-          className={`mt-6 transition-all duration-300 ${
-            open ? "" : "translate-x-20 translate-y-[-40px]"
-          }`}
-        >
-          <div className="relative w-[120px] h-[120px] border border-[#ff6ec4] bg-white mx-auto rounded-full">
-            <Image
-              src="/temp.jpg"
-              alt="Logo"
-              fill
-              className="rounded-full object-cover p-[5px]"
-            />
+        {/* Profile */}
+        <div className="px-8 mb-8">
+          <div className="relative w-20 h-20 mb-4 rounded-2xl overflow-hidden border border-white/10">
+            <Image src="/doll.jpg" alt="Logo" fill className="object-cover" />
           </div>
-          <span className="flex justify-center mt-3 font-extrabold text-2xl gradient-text">
+          <h2 className="text-xl font-bold text-white tracking-tight">
             Chit Min Thu
-          </span>
+          </h2>
+          <p
+            className="text-xs font-medium uppercase tracking-widest"
+            style={{ color: ACCENT_COLOR }}
+          >
+            Frontend Developer
+          </p>
         </div>
 
-        <div className="border-t mt-5" />
+        {/* Navigation */}
+        <nav className="flex flex-col gap-1 px-4">
+          <DrawerItem
+            icon={faHouse}
+            text="Home"
+            onClick={() => scrollTo("home")}
+          />
+          <DrawerItem
+            icon={faUser}
+            text="About"
+            onClick={() => scrollTo("about")}
+          />
+          <DrawerItem
+            icon={faFolderOpen}
+            text="Project"
+            onClick={() => scrollTo("project")}
+          />
+          <DrawerItem
+            icon={faTrophy}
+            text="Skill"
+            onClick={() => scrollTo("skill")}
+          />
+          <DrawerItem
+            icon={faAddressCard}
+            text="Contact"
+            onClick={() => scrollTo("contact")}
+          />
+        </nav>
 
-        <div
-          className={`flex flex-col gap-3 items-start space-y-5 px-10 mt-5 transition-all duration-300 ${
-            open ? "" : "translate-x-20 translate-y-[40px]"
-          }`}
-        >
-          <DrawerItem icon={faHouse} text="Home" />
-          <DrawerItem icon={faUser} text="About" />
-          <DrawerItem icon={faFolderOpen} text="Project" />
-          <DrawerItem icon={faTrophy} text="Skill" />
-          <DrawerItem icon={faAddressCard} text="Contact" />
-        </div>
-
-        <div className="flex justify-between px-10 mt-8 w-full">
-          <SocialIcon icon={faViber} color="bg-purple-500" />
-          <SocialIcon icon={faFacebook} color="bg-blue-800" />
-          <SocialIcon icon={faTelegram} color="bg-blue-500" />
+        {/* Footer Socials */}
+        <div className="absolute bottom-8 left-0 w-full px-8">
+          <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-4">
+            Let&apos;s Connect
+          </p>
+          <div className="flex gap-4">
+            <SocialIcon
+              icon={faViber}
+              href="viber://chat?number=959942620449"
+            />
+            <SocialIcon
+              icon={faFacebook}
+              href="https://facebook.com/nameiscoe"
+            />
+            <SocialIcon icon={faTelegram} href="https://t.me/coe_2005" />
+          </div>
         </div>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }
 
-function DrawerItem({ icon, text }: { icon: IconDefinition; text: string }) {
-  return (
-    <div className="flex items-center space-x-5">
-      <FontAwesomeIcon icon={icon} size="lg" />
-      <span>{text}</span>
-    </div>
-  );
-}
-
-function SocialIcon({ icon, color }: { icon: IconDefinition; color: string }) {
+function DrawerItem({
+  icon,
+  text,
+  onClick,
+}: {
+  icon: IconDefinition;
+  text: string;
+  onClick?: () => void;
+}) {
   return (
     <div
-      className={`${color} w-[34px] h-[34px] rounded-full flex justify-center items-center`}
+      onClick={onClick}
+      className="flex items-center space-x-4 w-full px-4 py-3 rounded-xl transition-all duration-300 cursor-pointer group text-gray-400 hover:text-white hover:bg-white/5"
     >
-      <FontAwesomeIcon icon={icon} className="text-white" size="lg" />
+      <FontAwesomeIcon
+        icon={icon}
+        className="transition-transform duration-300 group-hover:scale-110"
+      />
+      <span className="text-sm font-bold">{text}</span>
     </div>
+  );
+}
+
+function SocialIcon({ icon, href }: { icon: IconDefinition; href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-10 h-10 rounded-xl flex justify-center items-center bg-white/5 border border-white/5 hover:border-[#00FF7F]/30 hover:bg-[#00FF7F]/5 transition-all duration-300 group"
+    >
+      <FontAwesomeIcon
+        icon={icon}
+        className="text-gray-500 group-hover:text-[#00FF7F] transition-colors"
+        size="lg"
+      />
+    </a>
   );
 }
