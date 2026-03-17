@@ -1,12 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Mail,
-  Send,
-  MapPin,
-  Facebook,
-} from "lucide-react";
+import { Mail, Send, MapPin } from "lucide-react";
 
 import { FaFacebookF, FaTelegramPlane, FaViber } from "react-icons/fa";
 
@@ -54,8 +49,7 @@ export default function ContactPage() {
       className="text-white py-20"
       style={{ backgroundColor: BACKGROUND_COLOR }}
     >
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
+      <div>
         <div className="text-center mb-16">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -65,7 +59,7 @@ export default function ContactPage() {
           >
             Get In <span style={{ color: ACCENT_COLOR }}>Touch.</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -76,7 +70,6 @@ export default function ContactPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left Side: Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -87,38 +80,71 @@ export default function ContactPage() {
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
 
               <div className="space-y-8">
-                <motion.div whileHover={{ x: 10 }} className="flex items-start gap-4">
-                  <div className="p-3 rounded-2xl bg-white/5 border border-white/10" style={{ color: ACCENT_COLOR }}>
+                <motion.div
+                  whileHover={{ x: 10 }}
+                  className="flex items-start gap-4"
+                >
+                  <div
+                    className="p-3 rounded-2xl bg-white/5 border border-white/10"
+                    style={{ color: ACCENT_COLOR }}
+                  >
                     <Mail size={24} />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Email</p>
-                    <p className="text-lg text-gray-200">chitminthu2005c@gmail.com</p>
+                    <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">
+                      Email
+                    </p>
+                    <p className="text-lg text-gray-200">
+                      chitminthu2005c@gmail.com
+                    </p>
                   </div>
                 </motion.div>
 
-                <motion.div whileHover={{ x: 10 }} className="flex items-start gap-4">
-                  <div className="p-3 rounded-2xl bg-white/5 border border-white/10" style={{ color: ACCENT_COLOR }}>
+                <motion.div
+                  whileHover={{ x: 10 }}
+                  className="flex items-start gap-4"
+                >
+                  <div
+                    className="p-3 rounded-2xl bg-white/5 border border-white/10"
+                    style={{ color: ACCENT_COLOR }}
+                  >
                     <MapPin size={24} />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Location</p>
-                    <p className="text-lg text-gray-200">Yangon, Thingangyun Township, Myanmar</p>
+                    <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">
+                      Location
+                    </p>
+                    <p className="text-lg text-gray-200">
+                      Yangon, Thingangyun Township, Myanmar
+                    </p>
                   </div>
                 </motion.div>
               </div>
 
-              {/* Quick Social Links */}
               <div className="mt-12">
-                <p className="text-sm text-gray-500 font-bold uppercase tracking-wider mb-4">Connect with me</p>
+                <p className="text-sm text-gray-500 font-bold uppercase tracking-wider mb-4">
+                  Connect with me
+                </p>
                 <div className="flex gap-4">
                   {[
-                    { icon: <FaFacebookF size={20} />, href: "https://facebook.com/nameiscoe" },
-                    { icon: <FaViber size={20} />, href: "viber://chat?number=959942620449" },
-                    { icon: <FaTelegramPlane size={20} />, href: "https://t.me/coe_2005" },
+                    {
+                      icon: <FaFacebookF size={20} />,
+                      href: "https://facebook.com/nameiscoe",
+                    },
+                    {
+                      icon: <FaViber size={20} />,
+                      href: "viber://chat?number=959942620449",
+                    },
+                    {
+                      icon: <FaTelegramPlane size={20} />,
+                      href: "https://t.me/coe_2005",
+                    },
                   ].map((social, i) => (
                     <motion.a
-                      whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                      whileHover={{
+                        scale: 1.1,
+                        backgroundColor: "rgba(255, 255, 255, 0.1)",
+                      }}
                       whileTap={{ scale: 0.9 }}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -134,7 +160,6 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-          {/* Right Side: Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -144,22 +169,61 @@ export default function ContactPage() {
             <form onSubmit={onSubmit} className="space-y-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-bold text-gray-400 ml-1">Name</label>
-                  <input id="name" name="name" required type="text" placeholder="Your Name" className={inputClass} />
+                  <label
+                    htmlFor="name"
+                    className="text-sm font-bold text-gray-400 ml-1"
+                  >
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    required
+                    type="text"
+                    placeholder="Your Name"
+                    className={inputClass}
+                  />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-bold text-gray-400 ml-1">Email</label>
-                  <input id="email" name="email" required type="email" placeholder="email@example.com" className={inputClass} />
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-bold text-gray-400 ml-1"
+                  >
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    required
+                    type="email"
+                    placeholder="email@example.com"
+                    className={inputClass}
+                  />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-bold text-gray-400 ml-1">Message</label>
-                <textarea id="message" name="message" required rows={5} placeholder="Tell me about your project..." className={inputClass}></textarea>
+                <label
+                  htmlFor="message"
+                  className="text-sm font-bold text-gray-400 ml-1"
+                >
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={5}
+                  placeholder="Tell me about your project..."
+                  className={inputClass}
+                ></textarea>
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.02, boxShadow: `0 0 20px ${ACCENT_COLOR}66` }}
+                whileHover={{
+                  scale: 1.02,
+                  boxShadow: `0 0 20px ${ACCENT_COLOR}66`,
+                }}
                 whileTap={{ scale: 0.98 }}
                 disabled={isSubmitting}
                 type="submit"
@@ -170,10 +234,7 @@ export default function ContactPage() {
                   opacity: isSubmitting ? 0.7 : 1,
                 }}
               >
-                <motion.div
-                  animate={isSubmitting ? { rotate: 360 } : {}}
-                  transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                >
+                <motion.div>
                   <Send size={20} />
                 </motion.div>
                 {isSubmitting ? "Sending..." : "Send Message"}

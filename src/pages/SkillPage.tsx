@@ -11,7 +11,6 @@ import {
 import { SiNextdotjs } from "react-icons/si";
 import { motion } from "framer-motion";
 
-// Consistency Constants from Home Page
 const ACCENT_COLOR = "#00FF7F";
 const BACKGROUND_COLOR = "#1f1d2b";
 
@@ -20,7 +19,7 @@ type Skill = {
   percentage: number;
   icon: React.ElementType;
   colorClass: string;
-  index: number; // Index ကို transition delay အတွက် သုံးပါမယ်
+  index: number;
 };
 
 const GlassSkillCard = ({
@@ -31,17 +30,15 @@ const GlassSkillCard = ({
 }: Skill) => {
   return (
     <motion.div
-      // Scroll ဆင်းလာမှ ပေါ်လာမယ့် animation
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} // တစ်ခါပဲပြမယ်
-      transition={{ duration: 0.5, delay: index * 0.1 }} // တစ်ခုချင်းစီ အစဉ်လိုက်ပေါ်မယ်
-      whileHover={{ y: -10, scale: 1.02 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.1 } }}
       className="p-6 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl 
                  transition-all duration-500 hover:shadow-green-500/30 
                  cursor-pointer text-center relative overflow-hidden"
     >
-      {/* Progress Glow matching Home Page Accent */}
       <motion.div
         initial={{ width: 0 }}
         whileInView={{ width: `${percentage}%` }}
@@ -73,20 +70,52 @@ const GlassSkillCard = ({
 
 export default function SkillPage() {
   const skillsData = [
-    { skill: "HTML5", percentage: 80, icon: FaHtml5, colorClass: "bg-orange-500" },
-    { skill: "CSS/Tailwind", percentage: 70, icon: FaCss3Alt, colorClass: "bg-blue-500" },
-    { skill: "JavaScript", percentage: 60, icon: FaJs, colorClass: "bg-yellow-500" },
-    { skill: "React.js", percentage: 60, icon: FaReact, colorClass: "bg-cyan-400" },
-    { skill: "Next.js", percentage: 65, icon: SiNextdotjs, colorClass: "bg-white" },
-    { skill: "Git & GitHub", percentage: 60, icon: FaGitAlt, colorClass: "bg-red-500" },
-    { skill: "Backend/APIs", percentage: 50, icon: FaServer, colorClass: "bg-green-500" },
+    {
+      skill: "HTML5",
+      percentage: 80,
+      icon: FaHtml5,
+      colorClass: "bg-orange-500",
+    },
+    {
+      skill: "CSS/Tailwind",
+      percentage: 70,
+      icon: FaCss3Alt,
+      colorClass: "bg-blue-500",
+    },
+    {
+      skill: "JavaScript",
+      percentage: 60,
+      icon: FaJs,
+      colorClass: "bg-yellow-500",
+    },
+    {
+      skill: "React.js",
+      percentage: 60,
+      icon: FaReact,
+      colorClass: "bg-cyan-400",
+    },
+    {
+      skill: "Next.js",
+      percentage: 65,
+      icon: SiNextdotjs,
+      colorClass: "bg-white",
+    },
+    {
+      skill: "Git & GitHub",
+      percentage: 60,
+      icon: FaGitAlt,
+      colorClass: "bg-red-500",
+    },
+    {
+      skill: "Backend/APIs",
+      percentage: 50,
+      icon: FaServer,
+      colorClass: "bg-green-500",
+    },
   ];
 
   return (
-    <div
-      className="py-20"
-      style={{ backgroundColor: BACKGROUND_COLOR }}
-    >
+    <div className="py-20" style={{ backgroundColor: BACKGROUND_COLOR }}>
       <div className="text-center mb-12 px-4">
         <motion.h1
           initial={{ opacity: 0, scale: 0.9 }}
@@ -96,7 +125,7 @@ export default function SkillPage() {
         >
           My <span style={{ color: ACCENT_COLOR }}>Technical Stack</span>
         </motion.h1>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -107,11 +136,11 @@ export default function SkillPage() {
         </motion.p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 gap-8 sm:gap-4 xl:gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="mx-auto gap-8 sm:gap-4 xl:gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {skillsData.map((skill, index) => (
           <GlassSkillCard
             key={index}
-            index={index} // Delay တွက်ဖို့ ပို့ပေးလိုက်တာပါ
+            index={index}
             skill={skill.skill}
             percentage={skill.percentage}
             icon={skill.icon}

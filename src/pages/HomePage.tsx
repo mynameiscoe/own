@@ -28,7 +28,6 @@ export default function HomePage() {
   const socialBtn =
     "bg-white/20 backdrop-blur-sm border border-white/30 rounded-full shadow-lg transition duration-300";
 
-  // Animation variants for cleaner code
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -132,7 +131,7 @@ export default function HomePage() {
               ].map((social, index) => (
                 <motion.a
                   key={index}
-                  whileHover={{ scale: 1.2 }} // Icon လေးတွေကို mouse တင်ရင် လှုပ်သွားအောင်
+                  whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -157,7 +156,6 @@ export default function HomePage() {
           className="flex-1 flex justify-center order-1 xl:order-2"
         >
           <div className="w-70 h-70 sm:w-80 sm:h-80 lg:w-96 lg:h-96 relative p-4">
-            {/* Background Glow Animation */}
             <motion.div
               animate={{
                 scale: [1, 1.1, 1],

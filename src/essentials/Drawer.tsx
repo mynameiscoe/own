@@ -44,9 +44,6 @@ export default function Drawer({ open, setOpen }: DrawerOpen) {
     setMounted(true);
   }, []);
 
-  // -----------------------------
-  // Smooth Scroll Function
-  // -----------------------------
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -55,7 +52,7 @@ export default function Drawer({ open, setOpen }: DrawerOpen) {
         block: "start",
         inline: "nearest",
       });
-      setOpen(false); // Drawer ကို scroll လုပ်ပြီး ချင်ပြီး auto close
+      setOpen(false);
     }
   };
 
@@ -63,7 +60,6 @@ export default function Drawer({ open, setOpen }: DrawerOpen) {
 
   return createPortal(
     <div className="md:hidden">
-      {/* Backdrop */}
       <div
         className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-md transition-opacity duration-500 ${
           open
@@ -73,7 +69,6 @@ export default function Drawer({ open, setOpen }: DrawerOpen) {
         onClick={() => setOpen(false)}
       />
 
-      {/* Drawer Menu */}
       <div
         className={`fixed top-4 bottom-4 right-4 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           open
@@ -82,7 +77,6 @@ export default function Drawer({ open, setOpen }: DrawerOpen) {
         } overflow-hidden rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]`}
         style={{ backgroundColor: BACKGROUND_COLOR }}
       >
-        {/* Close Button */}
         <div className="flex justify-end p-5">
           <button
             onClick={() => setOpen(false)}
@@ -92,7 +86,6 @@ export default function Drawer({ open, setOpen }: DrawerOpen) {
           </button>
         </div>
 
-        {/* Profile */}
         <div className="px-8 mb-8">
           <div className="relative w-20 h-20 mb-4 rounded-2xl overflow-hidden border border-white/10">
             <Image src="/doll.jpg" alt="Logo" fill className="object-cover" />
@@ -108,7 +101,6 @@ export default function Drawer({ open, setOpen }: DrawerOpen) {
           </p>
         </div>
 
-        {/* Navigation */}
         <nav className="flex flex-col gap-1 px-4">
           <DrawerItem
             icon={faHouse}
@@ -137,7 +129,6 @@ export default function Drawer({ open, setOpen }: DrawerOpen) {
           />
         </nav>
 
-        {/* Footer Socials */}
         <div className="absolute bottom-8 left-0 w-full px-8">
           <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-4">
             Let&apos;s Connect

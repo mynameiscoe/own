@@ -8,8 +8,6 @@ import {
   FaCode,
 } from "react-icons/fa";
 
-const ACCENT_COLOR = "#00FF7F";
-
 const Footer = () => {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -24,7 +22,6 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-[#1f1d2b] border-t border-white/5 pt-16 pb-8 overflow-hidden">
-      {/* Decorative Glow Effect Animation */}
       <motion.div
         initial={{ width: "0%", opacity: 0 }}
         whileInView={{ width: "50%", opacity: 1 }}
@@ -33,8 +30,7 @@ const Footer = () => {
         className="absolute top-0 left-1/2 -translate-x-1/2 h-[1px] bg-gradient-to-r from-transparent via-[#00FF7F]/50 to-transparent"
       ></motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-12">
-        {/* 1. About / Brand */}
+      <div className="flex flex-col md:flex-row justify-between gap-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +55,6 @@ const Footer = () => {
           </p>
         </motion.div>
 
-        {/* 2. Quick Links */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -86,7 +81,6 @@ const Footer = () => {
           </ul>
         </motion.div>
 
-        {/* 3. Social Links */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -143,7 +137,6 @@ const Footer = () => {
         </motion.div>
       </div>
 
-      {/* 4. Copyright */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

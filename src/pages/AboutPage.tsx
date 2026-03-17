@@ -28,7 +28,6 @@ export default function AboutPage() {
     { icon: FaEnvelope, label: "Email", value: "chitminthu2005c@gmail.com" },
   ];
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -53,7 +52,6 @@ export default function AboutPage() {
         variants={containerVariants}
         className="mx-auto"
       >
-        {/* --- Header Section --- */}
         <motion.div
           variants={itemVariants}
           className="mb-12 text-center md:text-left"
@@ -69,12 +67,10 @@ export default function AboutPage() {
           </p>
         </motion.div>
 
-        {/* --- Main Content Split Layout --- */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* 1. Left Column: Image and Main Title */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ y: -5 }} // Mouse တင်ရင် အပေါ်နည်းနည်းတက်မယ်
+            whileHover={{ y: -5 }}
             className={`lg:col-span-4 p-8 ${glassClass} flex flex-col items-center text-center self-start`}
           >
             <motion.div
@@ -84,7 +80,8 @@ export default function AboutPage() {
               className="w-48 h-48 mb-6 relative rounded-full overflow-hidden border-4 border-white/10 shadow-2xl"
             >
               <Image
-                src="/boy.png"
+                className="object-center"
+                src="/hi.png"
                 alt="Chit Min Thu"
                 fill
                 style={{ objectFit: "cover" }}
@@ -100,9 +97,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          {/* 2. Right Column: Bio and Details */}
           <div className="lg:col-span-8 space-y-8">
-            {/* Short Bio */}
             <motion.div variants={itemVariants} className={`${glassClass} p-8`}>
               <h3
                 className="text-xl font-bold mb-4 uppercase tracking-wider"
@@ -117,7 +112,6 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            {/* Personal Details Cards */}
             <motion.div variants={itemVariants}>
               <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-wider">
                 Personal Details
@@ -151,7 +145,6 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
-            {/* Quick Fact / Age */}
             <motion.div
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}

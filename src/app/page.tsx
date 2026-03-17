@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="relative">
       <NavBar />
-      <main className="mx-5 xl:mx-18">
+      <main className="px-4 sm:px-6 xl:px-2 mx-auto max-w-7xl">
         <div id="home">
           <HomePage />
         </div>
@@ -18,15 +18,15 @@ export default function Home() {
           <AboutPage />
         </div>
         <div id="skill">
-          {/* <SkillPage /> */}
+          <SkillPage />
         </div>
         <div id="project">
-          {/* <ProjectPage /> */}
+          <ProjectPage />
         </div>
         <div id="contact">
-          {/* <ContactPage /> */}
+          <ContactPage />
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </main>
     </div>
   );

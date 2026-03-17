@@ -45,8 +45,7 @@ export default function ProjectsPage() {
       className="text-white py-20"
       style={{ backgroundColor: BACKGROUND_COLOR }}
     >
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
+      <div>
         <div className="mb-16 text-center md:text-left">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -72,7 +71,6 @@ export default function ProjectsPage() {
           </motion.p>
         </div>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
@@ -81,14 +79,13 @@ export default function ProjectsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -10 }} // Hover လုပ်ရင် card ကြွတက်လာမယ်
+              whileHover={{ y: -10 }}
               className={glassClass}
             >
-              {/* Image Container */}
               <div className="relative h-48 w-full bg-gray-800 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent z-10" />
                 <motion.div
-                  whileHover={{ scale: 1.1 }} // ပုံကို hover လုပ်ရင် zoom ဖြစ်မယ်
+                  whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.4 }}
                   className="h-full w-full"
                 >
@@ -102,7 +99,6 @@ export default function ProjectsPage() {
                 </motion.div>
               </div>
 
-              {/* Content */}
               <div className="p-6 group">
                 <h3 className="text-xl font-bold mb-2 text-gray-100 transition duration-300 group-hover:text-[#00FF7F]">
                   {project.title}
@@ -111,7 +107,6 @@ export default function ProjectsPage() {
                   {project.description}
                 </p>
 
-                {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag) => (
                     <span
@@ -123,7 +118,6 @@ export default function ProjectsPage() {
                   ))}
                 </div>
 
-                {/* Actions */}
                 <div className="flex gap-4">
                   <motion.a
                     whileHover={{ scale: 1.05 }}
