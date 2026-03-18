@@ -168,7 +168,7 @@ export default function HomePage() {
             <Image
               src="/boy.png"
               alt="Chit Min Thu Profile Image"
-              layout="fill"
+              fill
               objectFit="cover"
               className="rounded-full shadow-2xl z-10 relative border-2 border-white/10"
             />
